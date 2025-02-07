@@ -1,0 +1,29 @@
+name: practice_project
+on: push      #adding a trigger this workflow should run whenever a new commit is pushed
+jobs:
+    test:
+        runs-on: ubuntu-latest #defining runner
+        steps:
+            # step 1 : checking out or getting code
+            - name: get code or checkout the code
+              uses: actions/checkout@v3
+             # step 2 : setup node js
+            - name: setup Node.js
+              uses: actions/setup-node@v3
+              with: 
+                node-version: 18
+             # step 3: since dependencies are alredy installed not adding npm install step here
+             # step 4: Lint the code
+            - name: run lint
+              run: npm run lint #lint script should be in the package.json file
+             # step 5: Run test
+            - name: run tests
+              run: npm test # e.g npm run test pushing to remote
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: print message
+              run: echo "deploying as part of the workflow"
