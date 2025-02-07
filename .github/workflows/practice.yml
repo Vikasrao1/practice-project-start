@@ -15,7 +15,7 @@ jobs:
              # step 3: since dependencies are alredy installed not adding npm install step here
              # step 4: Lint the code
             - name: run lint
-              run: npm run lint #lint script should be in the package.json file
+              run: npx eslint --ext .jsx --fix src #npm run lint lint script should be in the package.json file
              # step 5: Run test
             - name: run tests
               run: npm test # e.g npm run test pushing to remote
