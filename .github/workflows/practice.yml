@@ -27,3 +27,8 @@ jobs:
               uses: actions/checkout@v3
             - name: print message
               run: echo "deploying as part of the workflow"
+            - name: Check Node and NPM version
+              run: node --version
+                   npm --version
+                   npm list eslint
+
